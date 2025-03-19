@@ -1,0 +1,129 @@
+/* Modern & Elegant CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #0F0F0F;
+    color: #EAEAEA;
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+nav {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    background: linear-gradient(135deg, #222 0%, #444 100%);
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+nav a {
+    text-decoration: none;
+    color: #EAEAEA;
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    background: #555;
+    transform: scale(1.1);
+}
+
+main {
+    margin-top: 5rem;
+    width: 90%;
+    max-width: 800px;
+    text-align: center;
+}
+
+h1, h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+}
+
+p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+a {
+    color: #81dbb8;
+    transition: 0.3s;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    background: #81dbb8;
+    color: black;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #5fbf9d;
+    transform: scale(1.05);
+}
+
+.form-with-validation {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.form-with-validation input {
+    width: 100%;
+    max-width: 300px;
+    padding: 0.8rem;
+    border: 1px solid #555;
+    border-radius: 8px;
+    background: #222;
+    color: #EAEAEA;
+    transition: 0.3s;
+}
+
+.form-with-validation input:focus {
+    border-color: #81dbb8;
+    outline: none;
+    transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+}
