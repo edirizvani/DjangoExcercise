@@ -22,7 +22,7 @@ pipeline {
       }
       steps {
         script {
-          docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-for-edirizvani7@gmail.com') {
+          docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
             dockerImage.push("${env.BRANCH_NAME}-${env.BUILD_NUMBER}")
             dockerImage.push("${env.BRANCH_NAME}-latest")
           }
