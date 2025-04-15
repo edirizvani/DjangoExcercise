@@ -1,24 +1,37 @@
-node {
-    def app
+pipeline {
+    agent any
 
-    stage('Clone repository') {
-        checkout scm
+    environment {
+        IMAGE_NAME = "edirizvani/djangoexercise"
     }
 
-    stage('Build image') {
-        // Using your Docker Hub repo name and tagging with branch + build number
-        app = docker.build("edirizvani/djangoexercise:${env.BRANCH_NAME}-${env.BUILD_NUMBER}")
-    }
-
-    stage('Push image') {
-        // Only push Docker image if we're on 'dev' branch
-        if (env.BRANCH_NAME == 'dev') {
-            docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-                app.push("${env.BRANCH_NAME}-${env.BUILD_NUMBER}")
-                app.push("${env.BRANCH_NAME}-latest")
+    stages {
+        stage('Clone repository') {
+            steps {
+                checkout scm
             }
-        } else {
-            echo "Not pushing Docker image. Branch '${env.BRANCH_NAME}' is not 'dev'."
+        }
+
+        stage('Build image') {
+            steps {
+                script {
+                    dockerImage = docker.build("${IMAGE_NAME}:${env.BRANCH_NAME}-${env.BUILD_NUMBER}")
+                }
+            }
+        }
+
+        stage('Push image') {
+            when {
+                branch 'dev'
+            }
+            steps {
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+                        dockerImage.push("${env.BRANCH_NAME}-${env.BUILD_NUMBER}")
+                        dockerImage.push("${env.BRANCH_NAME}-latest")
+                    }
+                }
+            }
         }
     }
 }
